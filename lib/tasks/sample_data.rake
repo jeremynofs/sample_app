@@ -15,6 +15,16 @@ namespace :db do
 									 email: email,
 									 password: password,
 									 password_confirmation: password)
-		end
+    end
+
+    users = User.all(limit: 6)
+
+    users.each do |user|
+      (rand(81)+31).times do
+        content = Faker::Lorem.sentence(rand(8)+1)
+        user.microposts.create!(content: content)
+      end
+    end
+
 	end
 end
